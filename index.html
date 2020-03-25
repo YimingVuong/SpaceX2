@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+	<meta charset='utf-8'/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SpaceX Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	</head>
+	<body>
+	<!-- 		<div class= "fade-out">
+		<img src="img/SpaceXLogo.png"></img>
+	</div> -->
+		<div class="row">
+			<header class="col sm-10 md-10 lg-10">
+				<div class="menu">
+					 <a id="hamburgerMenu" href="javascript:void(0);" class="icon" onclick="myFunction()"><img src="img/Menu.png"></img></a>
+				</div>
+				<div class="ship">
+					<h1>Falcon 9</h1>
+					<h2>Destination <strong>Mars</strong></h2>
+				</div>
+			</header>
+	
+			<aside class="col sm-10 md-10 lg-2">
+				<ul>
+					<li><img src="img/vector.svg">dasdhboard</li>
+					<li><img src="img/vector-1.svg">tools</li>
+					<li><img src="img/vector-2.svg">assistance</li>
+					<li><img src="img/vector-3.svg">journey info</li>
+					<li><img src="img/vector-4.svg">spacex</li>
+					<li><img src="img/vector-5.svg">app settings</li>
+					<li><img src="img/vector-6.svg">about </li>
+				</ul>
+			</aside>
+
+
+		<main class="col sm-10 md-10 lg-8">
+			<div class="tags col sm-10 md-10 lg-10">
+			</div>
+		    <div class="journeyInfo col sm-10 md-10 lg-10">
+				<div class="info">
+					<h2>eta</h2>
+					<p>21/02/2030</p>
+				</div>
+				<div class="info">
+					<h2>distance</h2>
+					<p>54mln km</p>
+				</div>
+				<div class="info">
+					<h2>speed</h2>
+					<p>96.000 km/h</p>
+				</div>
+			</div>
+		    <div class="col sm-10 md-5 lg-5">
+		    	<article>
+					<h3>Spacecraft Information</h3>
+					<div id="fuelChart"></div>
+				</article>
+		  	</div>
+		  	<div class="col sm-10 md-5 lg-5">
+		    	<article>
+					<h3>Gforce around the spacecraft</h3>
+					<div id="gforceChart"></div>
+				</article>
+		  	</div>
+		  	<div class="accel col sm-10 md-5 lg-5">
+		    	<article>
+					<h3>Acceleration</h3>
+					<div id="accelChart"></div>
+				</article>
+		  	</div>
+		  	<div class="supplies col sm-10 md-5 lg-5">
+		    	<article>
+					<h3>Supplies</h3>
+					<div id="suppliesChart"></div>
+				</article>
+		  	</div>
+		  </div>
+		</div>
+	</main>
+	</body>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script type="text/javascript">
+	var options = {
+          series: [70],
+          colors:['#81B49B'],
+          chart: {
+          height: 300,
+          type: 'radialBar',
+        },
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              size: '70%',
+            }
+          },
+        },
+        labels: ['3923KG'],
+        };
+        var chart = new ApexCharts(document.querySelector("#fuelChart"), options);
+        chart.render();
+
+        var options = {
+		  chart: {
+		  		toolbar:{
+		  			show: false,
+		  		},
+		    height: 280,
+		    type: "area",
+		    foreColor:"#ccc	",
+		  },
+		  dataLabels: {
+		    enabled: false,
+		  },
+		  colors: ["#81B49B"],
+		  stroke: {
+		  	curve: 'straight',
+		  	width: 1,
+		  },
+		  series: [
+		    {
+		      name: "Series 1",
+		      data: [100,65,251,121,453,321,231,754]
+		    }
+		  ], 
+		  xaxis: {
+		    categories: [
+		      "01 Jan",
+		      "02 Jan",
+		      "03 Jan",
+		      "04 Jan",
+		      "05 Jan",
+		      "06 Jan",
+		      "07 Jan"
+		    ], 
+          },
+          yaxis:{
+          	  style: {
+              colors: ['#FFFFFF',],
+              fontSize: '12px',
+              fontFamily: 'Helvetica, Arial, sans-serif',
+              fontWeight: 400,
+              cssClass: 'apexcharts-xaxis-label',
+          }
+		  }
+		};
+
+		var chart = new ApexCharts(document.querySelector("#gforceChart"), options);
+
+		chart.render();
+
+		var options = {
+          series: [{
+            name: "Acceleration",
+            data: [10, 120, 115, 204,342,342,310,290]
+        }],
+          chart: {
+          	toolbar:{
+          		show:false,
+          	},
+          height: 350,
+          type: 'line',
+          foreColor:'#ccc',
+          zoom: {
+            enabled: false
+          }
+        },
+        colors: ["#6BCEED"],
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight',
+          width: 3,
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#accelChart"), options);
+        chart.render();
+
+        var options = {
+          series: [{
+          data: [400, 430, 448,]
+        }],
+          chart: {
+         	toolbar:{
+         		show:false,
+         	},
+          type: 'bar',
+          height: 350,
+          foreColor: '#ccc',
+
+        },
+
+        plotOptions: {
+          bar: {
+          	distributed: true,
+            horizontal: true,
+            backgroundBarColors: ["#8DDDDD"],
+            backgroundBarOpacity: 1,
+        },
+
+          
+        },
+             colors: ['#9DFDCF','#8DDDDD', '#8DA3DD',],
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: ['Food', 'Water', 'Medicines'
+          ],
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#suppliesChart"), options);
+        chart.render();
+</script>
+
+
+</html>
